@@ -1,0 +1,118 @@
+body {
+	padding-bottom: 10px;
+    padding-top: 0px;
+    color:#222222;
+}
+label,input,textarea{
+	display:block;
+	background:white;
+}
+input,textarea{
+	display:block;
+	background:white;
+	border:1px solid black;
+}
+select{
+	display:inline-block;
+}
+input,textarea,select{
+	margin-bottom:8px;
+}
+.alert{
+	margin:0;
+	padding:15px;
+	background:#DFF0D8;
+	border-radius: 5px;
+}
+.thumb{
+    border:1px solid #E7E7E7;
+    border-radius: 8px;
+    margin:10px;
+    padding:10px;
+}
+.thumb:hover{
+    border:1px solid #58B158;
+    box-shadow: 0px 6px 8px 0px rgba(0,0,0,0.2);
+}
+.user{
+	margin-right:8px;
+	display:inline-block;
+	width:28px;
+	height:45px;
+	background: url("../images/icone-compte.png") no-repeat white;
+	position:absolute;
+	top:2px;
+	left:-40px;
+}
+.icon1{
+	float:right;
+	margin-right:0px;
+	display:none;
+	width:45px;
+	height:45px;
+	background: url("../images/icone-panier.jpg") no-repeat white;
+	border:none;
+}
+.panier{
+	margin-right:8px;
+	width:45px;
+	height:45px;
+	background: url("../images/icone-panier.jpg") no-repeat white;
+	position:absolute;
+	top:2px;
+	left:-50px;
+}
+.icon2{
+	float:right;
+	margin-right:8px;
+	display:none;
+	width:28px;
+	height:45px;
+	background: url("../images/icone-compte.png") no-repeat white;
+	border:none;
+}
+#recherche{
+	width:550px;
+}
+  @media screen and (max-width: 1200px) {
+    #recherche{display:none;}
+}
+@media screen and (max-width: 996px) {
+    #compte{display:none;}
+    #panier{display:none;}
+}
+@media screen and (max-width: 996px) {
+    .icon1{display:block;}
+    .icon2{display:block;}
+}
+.recherche{
+	width:500px;
+	float:left;
+	display: inline-block;
+	padding-left:10px;
+	color:green;
+}
+#rechercheResponsive{
+	width:100%;
+	margin-left:3px;
+	float:left;
+}
+.search{
+	background: url("../images/search.jpg") no-repeat white;
+	width:45px;
+	height:32px;
+	border-radius: 0px;
+	border:none;
+	margin-top:1px;
+	float:left;
+	display: inline-block;
+}
+
+.form-titre{
+	width:100%;
+	line-height: 25px;
+}
+.form-description{
+	width:100%;
+	height:135px;
+}

@@ -1,0 +1,88 @@
+button.accordion{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background:none;
+    width:100%;
+    text-align: left;
+    margin: 0px;
+    width:250px;/*derniere modif*/
+    padding-left: 0px;/*derniere modif*/
+}
+button.accordion.active, button.accordion:hover {
+    background-color: #eeeeee;
+}
+a.contact{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background:none;
+    width:100%;
+    text-align: left;
+    margin: 0px;
+    color:#583511;
+}
+a.lien{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background:none;
+    width:100%;
+    text-align: left;
+    margin: 0px;
+    color:#818181;/*derniere modif*/
+}
+a.accordion.active, a.accordion:hover {
+    background-color: #eeeeee;
+    color:#818181;/*derniere modif*/
+}
+button.accordion3{
+    cursor: pointer;
+    border:none;
+    border-radius: 0px;
+    outline: none;
+    background:none;
+    width:100%;
+    text-align: left;
+    margin: 0px;
+}
+button.accordion3.active, button.accordion3:hover {
+    background-color: white;
+    border:none;
+    border-radius: 0px;
+}
+a.accordion3.active, a.accordion3:hover {
+    background-color: #eeeeee;
+    color:#818181;/*derniere modif*/
+}
+div.panel{
+    clear:both;
+    opacity: 0;
+    display:none;
+    border:none;
+    border-radius: 0px;
+    /*transition: 0.6s ease-in-out;*/
+    margin-bottom: 0px;
+}
+div.panel.show {
+    opacity: 1;
+    display:block;
+    border:none;
+    border-radius: 0px;
+}
+
+button.accordion:after {
+    content: '\02795';
+    font-size: 13px;
+    color: #818181;
+    float: right;
+    display:inline-block;
+    margin-top: 15px;
+}
+
+button.accordion.active:after {
+    content: "\2796"; 
+    color: #818181;
+    display:inline-block;
+    margin-top: 15px;
+}

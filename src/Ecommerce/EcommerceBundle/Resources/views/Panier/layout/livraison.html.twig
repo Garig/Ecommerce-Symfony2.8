@@ -1,0 +1,54 @@
+{% extends "::layout/base3.html.twig" %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+            <h2>Livraison</h2>
+                    <div class="col-lg-6 col-md-6 col-xs-12" style="margin-bottom:30px">
+                        {% if utilisateur.adresses | length != 0%}
+                        <form action="{{ path("validation")}}" method="POST">
+                            
+                            <h4>Adresse de livraison</h4>
+                            {% for adresse in utilisateur.adresses %}
+                            <label class="radio">
+                                <input type="radio" name="livraison" value="{{adresse.id}}" {% if loop.index0 ==0 %} checked="checked" {% endif %}>
+                                {{ adresse.adresse }}  - {{ adresse.complement }}<br>{{ adresse.cp }} {{adresse.ville}} <a href="{{ path('livraisonAdresseSuppression', {'id':adresse.id}) }}"><i class="fa fa-trash"></i></a>
+                                <br>{{ adresse.prenom }} {{ adresse.nom }}
+                                
+                            </label>
+                            {% endfor %}
+                            
+                            <br><br>
+                            
+                            <h4>Adresse de facturation</h4>
+                            {% for adresse in utilisateur.adresses %}
+                            <label class="radio">
+                                <input type="radio" name="facturation" value="{{adresse.id}}" {% if loop.index0 ==0 %} checked="checked" {% endif %}>
+                                {{ adresse.adresse }} - {{ adresse.complement }}<br>{{ adresse.cp }} {{adresse.ville}} <a href="{{ path('livraisonAdresseSuppression', {'id':adresse.id}) }}"><i class="fa fa-trash"></i></a>
+                                <br>{{ adresse.prenom }} {{ adresse.nom }}
+                                
+                            </label>
+                            {% endfor %}
+                            
+                            <br>
+                            
+                            <button type="submit" href="{{ path('validation') }}" class="btn btn-primary">Valider mes adresses</button>
+                        </form><br>
+                            {% endif %}
+                    </div>
+                    
+								<div class="col-lg-6 col-md-6 col-xs-12">
+									<h4>Ajouter une nouvelle adresse</h4>
+                                                                        <form action="{{ path('livraison') }}" method="POST">
+                                                                            {{ form_widget(form) }}
+                                                                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                                                                        </form>
+								</div>
+							</div>
+						</div>
+					
+		</div>
+	</div>
+
+{% endblock %}

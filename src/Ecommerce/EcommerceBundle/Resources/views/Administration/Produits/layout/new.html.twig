@@ -1,0 +1,20 @@
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block body -%}
+<h2>Ajouter un produit</h2>
+<div class="span9">
+    <form action="{{ path("adminProduits_new") }}" method="post"  {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-primary bouton">Ajouter</button>
+    </form>
+</div>
+<div class="span12">
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('adminProduits_index') }}">
+                Retour
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

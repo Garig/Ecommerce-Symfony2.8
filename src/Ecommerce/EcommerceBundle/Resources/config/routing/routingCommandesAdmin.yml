@@ -1,0 +1,7 @@
+adminCommandes_index:
+    path:     /
+    defaults: { _controller: "EcommerceBundle:CommandesAdmin:commandes" }
+    
+adminFacturesPDF:
+    pattern:  /facture/{id}
+    defaults: { _controller: "EcommerceBundle:CommandesAdmin:facturesPDF" }

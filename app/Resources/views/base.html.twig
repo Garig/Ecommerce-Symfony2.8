@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Sdz{% endblock %}</title>
+
+        {% block stylesheets %}
+          {% stylesheets output=''
+            'css/bootstrap.css'
+             %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+          {% endstylesheets %}
+        {% endblock %}
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('bundles/blog/images/favicon.ico') }}" />
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" />
+    </head>
+
+    <body>
+        <div class="container">
+            <div id="header" class="hero-unit">
+                <h1>Mon projet Symfony2</h1>
+                <p>Ce projet est propulsé par Symfony2, et construit grâce au tutoriel du site du zéro.</p>
+                <p><a class="btn btn-primary btn-large" href="http://www.mydevphp.com/category/symfony2">Aide mémoire >>
+                </a>&nbsp;<a class="btn btn-primary btn-large" href="http://www.tutoriel-symfony2.fr/">Lire le blog >>
+                </a>&nbsp;<a class="btn btn-primary btn-large" target="_blank" href="https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony2">Lire le tutoriel >>
+                </a></p>
+            </div>  
+            <div class="row">
+                <div id="menu" class="span3" style="float:left">
+                    <h3>Le blog</h3>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="{{ path('sdzblog_accueil') }}">Accueil du blog</a></li>
+                        <li><a href="{{ path('sdzblog_ajouter') }}">Ajouter un article</a></li>
+                        <li><a href="{{ path('sdzblog_modifier', {'id': 84}) }}">Modifier l'article 84</a></li>
+                        <li><a href="{{ path('sdzblog_supprimer', {'id': 24}) }}">Supprimer l'article 24</a></li>
+                        {#ici la classe#}
+                    </ul>
+                    
+                    
+                    {#je suis pas sur du nom du controller ici avec ou sans Sdz. Hé hé t as compris maintenant c'est au moment de la création du Bundle que tout se joue si tu décide d'enlever le nom du projet pour nommer le nom du Bundle après tu n'as plus jamais besoin de mettre le nom du projet ici Sdz et tu peux nommer directement ton controleur blogBundle:Blog:menu pour l'action du menu par exemple#}
+                    
+                </div>
+                <div id="content" class="span9" style="float:left">
+                {% block body %}
+                {% endblock %}
+                </div>
+            </div>
+
+            <hr>
+
+            <footer>
+                <p>The sky's the limit @ 2015</p>
+            </footer>
+        </div>
+
+        {% block javascripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+            <script type="text/javascript" src="{{ asset('bundles/blog/js/bootstrap.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

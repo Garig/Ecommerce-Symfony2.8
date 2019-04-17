@@ -1,0 +1,30 @@
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block body -%}
+<div class="container">
+    <div class="row">
+        <h2>Editer une categorie</h2>
+        <div class="span9">
+            <form action="{{ path("adminCategories_edit", {'id': categorie.id }) }}" method="post"  {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-primary bouton">Modifier</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <ul class="record_actions">
+            <li>
+                <a href="{{ path('adminCategories_index') }}">
+                    Retour
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('adminCategories_delete', {'id': categorie.id} ) }}">
+                    Supprimer
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

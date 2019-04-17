@@ -1,0 +1,41 @@
+{% extends '::layout/layoutAdmin.html.twig' %}
+{% block title title|title %}
+{% block body -%}
+    <h1>Liste des produits</h1>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Prix HT</th>
+                <th>Dispo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.nom }}</td>
+                <td>{{ produit.prix| number_format(2, '.', ',') }} €</td>
+                <td>{{ produit.disponible }}</td>
+                <td>
+                    <a href="{{ path('adminProduits_show', { 'id': produit.id }) }}"><i class="fa fa-eye"></i>&nbsp;voir</a>&nbsp;&nbsp;
+                    <a href="{{ path('adminProduits_edit', { 'id': produit.id }) }}"><i class="fa fa-pencil"></i>&nbsp;éditer</a>&nbsp;&nbsp;
+                    <a href="{{ path('adminProduits_delete', { 'id': produit.id }) }}"><i class="fa fa-trash"></i>&nbsp;supprimer</a>&nbsp;&nbsp;
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('adminProduits_new') }}">
+                Nouveau produit
+            </a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,23 @@
+adminCategories_index:
+    path:     /
+    defaults: { _controller: "EcommerceBundle:CategoriesAdmin:index" }
+    methods:  GET
+
+adminCategories_show:
+    path:     /show/{id}
+    defaults: { _controller: "EcommerceBundle:CategoriesAdmin:show" }
+    methods:  GET
+
+adminCategories_new:
+    path:     /new
+    defaults: { _controller: "EcommerceBundle:CategoriesAdmin:new" }
+    methods:  [GET, POST]
+
+adminCategories_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "EcommerceBundle:CategoriesAdmin:edit" }
+    methods:  [GET, POST]
+
+adminCategories_delete:
+    path:     /delete/{id}
+    defaults: { _controller: "EcommerceBundle:CategoriesAdmin:delete" }

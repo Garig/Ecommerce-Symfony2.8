@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block titre %}MyPanier.fr | Fruits & légumes{% endblock %}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="{% block motsCles %}{% endblock %}" />
+        <meta name="description" content="{% block description %}My Panier est une boutique en ligne de fruits et légumes. Commandez maintenant votre panier de fruits et légumes frais.{% endblock %}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset ('bundles/ecommerce/css/caroussel.css') }}" />
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset ('bundles/ecommerce/css/menu_responsive.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset ('bundles/ecommerce/css/accordion.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset ('bundles/ecommerce/css/pagination.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset ('bundles/ecommerce/css/dropdown.css') }}" />
+        <link rel="stylesheet" href="{{ asset ('bundles/ecommerce/css/style2.css') }}" />
+        {% block stylesheets %}{% endblock %}
+
+        <link rel="icon" type="image/png" href="{{ asset('bundles/ecommerce/images/citron-logo.png') }}" />
+    </head>
+
+    <body>
+
+    <div class="container">
+
+        <header class="header">   
+            <div class="container">
+
+                <!--<div class="row">
+                        <a href="{{ path('fos_user_security_login')}}">Connexion</a>
+                </div>-->
+
+
+
+                <div class="row">
+
+                    <!--<div style="float:right;margin-right:10px">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <span style="color:#386008">{{app.user.username}}</span>
+                            <a href="{{ path('fos_user_security_logout') }}">&nbsp;-&nbsp;{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        {% endif %}
+                    </div>-->
+        
+                    <div>
+                           <a href="#" onclick="openNav()" class="header__icon" id="header__icon"></a>
+                           <a href="{{ path("produits") }}" class="header__logo js-scrollTo" style="font-size:22px">MyPanier.fr</a>
+                        
+                          
+                            <nav class="menu" style="float:left;margin-left:10px">
+                                <div class="dropdown">
+                                  <a class="dropbtn">Nos produits</a>
+                                  <div class="dropdown-content">
+                                    <ul style="padding:0;margin:0;">
+                                        {% render(controller('EcommerceBundle:Categories:menu', {'limit': 4} )) %}
+                                    </ul>
+                                  </div>
+                                </div>
+
+                            </nav>
+
+                            <div id="recherche" style="float:left;line-height:28px;margin-top:7px;margin-left:15px">
+                                {{ render(controller('EcommerceBundle:Produits:recherche')) }} 
+                            </div>
+
+
+                            <div id="panier" style="position:relative;float:right;margin-left:70px">
+                              <a class="dropbtn"><span class="panier"></span>{{ render(controller('EcommerceBundle:Panier:menu')) }}</a>
+                            </div>
+
+                            <a href="{{ path('panier')}}" class="icon1"></a>
+
+                            <div id="compte" style="position:relative;float:right;margin-left:30px">
+                              <a href="{{ path('utilisateurs_homepage')}}"><span class="user"></span>Mon compte</a>
+                            </div>
+
+                            <a href="{{ path('utilisateurs_homepage')}}" class="icon2"></a>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </header>
+
+    <div class="row" style="clear:both;margin-top:75px;">
+
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          
+                    <a href="{{ path('produits') }}" class="accordion lien">Accueil</a>
+                    
+                    <button class="accordion"><a href="#" style="margin-left:0px;display:inline-block" class="js-scrollTo">Nos produits</a></button>
+                    
+                    <div class="panel">
+                        <ul style="padding:0;margin:0;">
+                            {% render(controller('EcommerceBundle:Categories:menu', {'limit': 4} )) %}
+                        </ul>
+                    </div>
+
+                    <div id="rechercheResponsive" style="float:right;line-height:28px;margin-top:7px">
+                        {{ render(controller('EcommerceBundle:Produits:recherche')) }} 
+                    </div>   
+            </div>
+    </div>
+
+    {% block body %}{% endblock %}
+    <hr style="clear:both" />
+
+        <footer id="footer" style="clear:both">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="float:left;max-width:275px;margin-right:10px">
+                        <h4>Informations</h4>
+                        <ul style="margin:0px;padding:0px;margin-bottom:15px">
+                            {{ render(controller('PagesBundle:Pages:Menu', { 'max' : 2 } )) }}
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="float:left;margin-bottom:15px;max-width:275px;margin-right:10px">
+                        <h4>Mon compte</h4>
+                        <p style="margin:0px;padding:0px"><a href="{{ path('utilisateurs_homepage')}}">Mon compte</a></p>
+                        <p style="margin:0px;padding:0px"><a href="{{ path('fos_user_security_login')}}">Connexion</a></p>
+                        <p style="margin:0px;padding:0px"><a href="{{ path('fos_user_registration_register')}}">Inscription</a></p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="float:left;max-width:275px;margin-right:10px">
+                        <h4>Blog recettes</h3>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="float:left;max-width:275px;margin-right:10px">
+                        <h4>Nous contacter</h3>
+                        <!--<p style="margin:0px;padding:0px"><i class="fa fa-phone"></i>&nbsp;Tel: 06 67 98 90 23</p>-->
+                        <!--<p><i class="fa fa-print"></i>&nbsp;Fax: {{ fax }}</p>-->
+                        <p style="margin:0px;padding:0px"><i class="fa fa-mail"></i>&nbsp;<a href="{{ path('contact')}}">Contact</a></p>
+                    </div>
+                </div>
+
+                    <div class="col-xs-12" style="clear:both;margin-top:20px;width:100%">
+                        <p style="text-align:center;width:100%"> {{"now"|date('Y')}} &copy; MyPanier.fr</p>
+                    </div>
+            </div>
+
+        </div>
+        </footer>
+    </div>
+            <script type="text/javascript" src="{{ asset ('https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/ecommerce/js/accordion.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/ecommerce/js/menu_responsive.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/ecommerce/js/scroll.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+            <script type="text/javascript" src="{{ asset ('https://use.fontawesome.com/fb3bdccdce.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
+

@@ -1,0 +1,122 @@
+{% extends "::layout/base3.html.twig" %}
+
+{% set transport=4.80 %}
+{#
+{% set totalHT=0 %}
+{% set totalTTC=0 %}
+
+{% set refTva = {} %}
+{% for produit in produits %}
+    {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : 0 }) %}
+{% endfor %}
+#}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        
+        <!--<div class="span3">
+            {% include '::modulesUsed/navigation.html.twig' %}
+        </div>-->
+        
+        <div class="span9">
+            
+            
+            <h2>Valider mon panier</h2>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <!--<th>Image</th>-->
+                        <th>Références</th>
+                        <th>PU HT</th>
+                        <th>Quantité</th>
+                        <th>Total HT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for produit in commande.commande.produit %}
+                    <tr>
+                        
+                        <!--<td style="line-height:40px"><img src="{{ asset(produit.image.AssetPath) }}" alt="{{ produit.image.name }}" width="50" height="40"></td>-->
+                        <td style="line-height:40px">{{ produit.reference }}</td>
+                        <td style="line-height:40px">{{ produit.prixHT |number_format(2, '.', ',') }} €</td>
+                        <td style="line-height:40px">
+                            {{ produit.quantite }}
+                        </td>
+                        <td style="line-height:40px">{{ (produit.prixHT * produit.quantite) |number_format(2, '.', ',') }} €</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                
+                    <row>
+
+                        <div style="float:left;margin-right:120px">
+                            <table>
+                                <tr>
+                                    <td><h4>Adresse de livraison</h4></td>
+                                </tr>
+                                <tr>
+                                    <td>{{ commande.commande.livraison.prenom }} {{ commande.commande.livraison.nom }}</td></tr>
+                                <tr>
+                                    <td>{{ commande.commande.livraison.adresse }} - {{ commande.commande.livraison.complement }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ commande.commande.livraison.cp }} {{ commande.commande.livraison.ville }} - {{ commande.commande.livraison.pays }}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div style="float:left;margin-right:0px">
+                            <table>
+                                <tr>
+                                    <td><h4>Adresse de facturation</h4></td>
+                                </tr>
+                                <tr>
+                                    <td>{{ commande.commande.facturation.prenom }} {{ commande.commande.facturation.nom }}</td></tr>
+                                <tr>
+                                    <td>{{ commande.commande.facturation.adresse }} - {{ commande.commande.livraison.complement }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ commande.commande.facturation.cp }} {{ commande.commande.facturation.ville }} - {{ commande.commande.facturation.pays }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div style="float:right">
+                            <table>
+                                <tr>
+                                    <td align="left"><b>Total HT :&nbsp;&nbsp;</b></td><td align="right">{{ commande.commande.prixHT |number_format(2, '.', ',') }} €</td>
+                                </tr>
+                                {% for key, tva in commande.commande.tva %}
+                                <tr>
+                                    <td align="left"><b>TVA {{ key }} :&nbsp;&nbsp;</b></td><td align="right">{{ tva |number_format(2, '.', ',')}} €</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Transport :</b></td><td align="right">{{ transport |number_format(2, '.', ',') }} €</td>
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td align="left"><b>Total TTC :&nbsp;&nbsp;</b></td><td align="right">{{ commande.commande.prixTTC |number_format(2, '.', ',') }} €</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </row>
+            
+            <div class="clearfix"></div>
+            <br>
+            
+            <form action="{{ path('validationCommande', { 'id' : commande.id }) }}" method="POST"/>
+                <input name="token" type="hidden" value="{{ commande.commande.token }}" />
+                <input name="prix" type="hidden" value="{{ commande.commande.prixTTC }}" />
+                <input name="date" type="hidden" value="{{ commande.date|date('dmyhms') }}" />
+                <button type="submit" class="btn btn-success pull-right" style="margin-top:22px">Payer</button>
+            </form>
+            
+            <br><a href="{{ path('livraison') }}" class="btn btn-primary">retour</a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

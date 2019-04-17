@@ -1,0 +1,5 @@
+validationCommande:
+    path:     /api/banque/{id}
+    defaults: { _controller: EcommerceBundle:Commandes:validationCommande }
+ 
+   

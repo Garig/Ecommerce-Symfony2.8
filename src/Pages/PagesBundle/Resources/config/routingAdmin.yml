@@ -1,0 +1,31 @@
+adminPages_index:
+    path:     /
+    defaults: { _controller: "PagesBundle:PagesAdmin:index" }
+    methods:  GET
+    
+adminPages_softdel:
+    pattern:  /soft/del
+    defaults: { _controller: "PagesBundle:PagesAdmin:softDel" }
+
+adminPages_restore:
+    pattern:  /{id}/restore
+    defaults: { _controller: "PagesBundle:PagesAdmin:restore" }
+
+adminPages_show:
+    path:     /show/{id}
+    defaults: { _controller: "PagesBundle:PagesAdmin:show" }
+    methods:  GET
+
+adminPages_new:
+    path:     /new
+    defaults: { _controller: "PagesBundle:PagesAdmin:new" }
+    methods:  [GET, POST]
+
+adminPages_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "PagesBundle:PagesAdmin:edit" }
+    methods:  [GET, POST]
+
+adminPages_delete:
+    path:     /delete/{id}
+    defaults: { _controller: "PagesBundle:PagesAdmin:delete" }

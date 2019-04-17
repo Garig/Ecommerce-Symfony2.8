@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Web City{% endblock %}</title>
+
+        {% block stylesheets %}
+          {% stylesheets output=''
+            'css/bootstrap.css'
+            '@TutoAnimauxBundle/Resources/public/css/style.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+          {% endstylesheets %}
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('bundles/blog/images/favicon.ico') }}" />
+    </head>
+
+    <body>
+        <div class="container">
+            <div id="header" class="hero-unit">
+                <h1>Web-city.fr</h1>
+                <p>Blog entièrement consacré au Framework PHP Symfony2.</p>
+                <p><a class="btn btn-primary btn-large" href="http://www.mydevphp.com/category/symfony2">Aide mémoire >>
+                </a>&nbsp;<a class="btn btn-primary btn-large" href="http://www.tutoriel-symfony2.fr/">Lire le blog >>
+                </a>&nbsp;<a class="btn btn-primary btn-large" target="_blank" href="https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony2">Lire le tutoriel >>
+                </a></p>
+            </div> 
+
+            <div class="row">
+                <div id="menu" class="span3" style="float:left">
+                    <h4>Le blog</h4>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="{{ path('tuto_animaux_homepage') }}"><i class="fa fa-home"></i> Accueil du blog</a></li>
+                    </ul>
+
+                <div>
+                    <h4>Identification</h4>
+
+                    <ul class="nav nav-pills nav-stacked">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} 
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-user-times"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+                    {% else %}
+                        <li><a href="{{ path('fos_user_security_login') }}"><i class="fa fa-user"></i> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                    {% endif %}
+                    <li><a href="{{ path('fos_user_registration_register') }}"><i class="fa fa-server"></i> Inscription</a></li>
+                    </ul>
+
+                    {% if is_granted('ROLE_USER') %}
+                    <h4>Tableau de bord</h4>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="{{ path('tuto_animaux_ajouter') }}"><i class="fa fa-pencil"></i> Ajouter un article</a></li>
+                        <li><a href="{{ path('tuto_animaux_ajouter') }}"><i class="fa fa-pencil"></i> Ajouter une catégorie</a></li>
+                        <li><a href="{{ path('fos_user_profile_show') }}"><i class="fa fa-user"></i> Mon profil</a></li>
+                    </ul>
+                    {% endif %}
+                </div>
+
+                {#{{ render(controller('TutoAnimauxBundle:Default:recentArticles', { 'max': 3 })) }}#}
+
+                </div>
+                    
+                    
+                    {#je suis pas sur du nom du controller ici avec ou sans Sdz. Hé hé t as compris maintenant c'est au moment de la création du Bundle que tout se joue si tu décide d'enlever le nom du projet pour nommer le nom du Bundle après tu n'as plus jamais besoin de mettre le nom du projet ici Sdz et tu peux nommer directement ton controleur blogBundle:Blog:menu pour l'action du menu par exemple#}
+                    
+    
+                <div id="content" class="span9" style="float:left">
+
+                <div>
+                    {% for type, messages in app.session.flashBag.all %}
+                    {% for message in messages %}
+                        <div class="{{ type }}">
+                            {{ message|trans({}, 'FOSUserBundle') }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                </div>
+
+                <div>
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+                </div>
+
+                {% block body %}
+                {% endblock %}
+                </div>
+            </div>
+
+            <hr>
+
+            <footer>
+                <p align="center">Web-City.fr @ 2016</p>
+            </footer>
+        </div>
+
+        {% block javascripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+            <script type="text/javascript" src="{{ asset('bundles/blog/js/bootstrap.js') }}"></script>
+            <script src="https://use.fontawesome.com/fb3bdccdce.js"></script>
+        {% endblock %}
+    </body>
+</html>
+

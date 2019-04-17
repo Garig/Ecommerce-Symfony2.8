@@ -1,0 +1,100 @@
+{% extends "::layout/base3.html.twig" %}
+
+{% block titre %}{% if categorie|length != 0 %}{{categorie.nom}} - {{parent()}}{%else %}{{parent()}}{% endif %}{% endblock %}
+
+{% block description %}{% if categorie|length != 0 %}{{categorie.description}}{%else %}{{parent()}}{% endif %}{% endblock %}
+
+{% block body %}
+        <!--<div class="span3">
+        {% include "::modulesUsed/navigation.html.twig" %}
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        {% include "::modulesUsed/utilisateurConnecte.html.twig" %}
+        {% else %}
+        {% include "::modulesUsed/utilisateur.html.twig" %}
+        {% endif %}
+        {{ render(controller('EcommerceBundle:Panier:menu')) }}
+        </div>-->
+     
+            
+            {% if categorie|length != 0 %}
+                <div style="margin-bottom: 5px;">
+                    <p align="center" style="width:100%"><img src="{{ categorie.image.AssetPath|imagine_filter('categorie')}}" align="center" style="margin:0 auto;max-width:100%;max-height:100%"></p>
+                    <h2 style="text-align:center;margin-bottom:0px">{{categorie.nom}}</h2>
+                </div>
+                {#<p align="center">{{ categorie.description}}</p>#}
+            {% else %}
+                <div style="margin-bottom:5px">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top:0px">
+
+                      <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                      </ol>
+                      <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://www.mypanier.fr/categorie/fruits" border="0">
+                                <img class="second-slide" src="{{ asset('bundles/ecommerce/images/Fruits3.png') }}" style="margin:0 auto" height="170px" alt="fruits"></a>
+                        </div>
+
+                        <div class="item">
+                            <a href="http://www.mypanier.fr/categorie/legumes" border="0">
+                                <img class="third-slide" src="{{ asset('bundles/ecommerce/images/friseLegumes.png') }}" style="margin:0 auto" height="170px" alt="légumes"></a>
+                        </div>
+
+                      </div>
+                      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only"></span>
+                      </a>
+                      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only"></span>
+                      </a>
+                    </div>
+                    <h2 style="text-align:center;margin-bottom:0px">Fruits et légumes</h2>
+                </div>
+            {% endif %}
+            <p style="float:right;margin-top:0px">Il y a {% if categorie|length != 0 %}{{countProduitsCat}}{% else %}{{findProduits|length}}{% endif %} produits</p>
+                
+            {% if produits|length != 0 %}
+                <ul style="clear:both;margin:0px;padding:0px">
+                    {% for produit in produits %}
+                    <li style="list-style-type:none">
+                        <div class="thumb col-lg-3 col-md-4 col-sm-6 col-xs-12" style="max-width:265px;">
+                            <a href="{{ path("presentation", {'slug': produit.slug}) }}"><img src="{{ produit.image.AssetPath|imagine_filter('produitThumb')}}" alt="{{ produit.image.name }}" width="245" height="170"></a>
+                            <div class="caption">
+                                <h4>{{produit.nom}}</h4>
+                                <p>{{produit.prix|tva(produit.tva.multiplicate| number_format(2, '.', ','))}} €</p>
+                                <a class="btn btn-primary" href={{ path("presentation", {'slug': produit.slug}) }}>Plus d'infos</a>
+                                {% if panier[produit.id] is not defined %}
+                                <a class="btn btn-success" href="{{ path("ajouter", {'id': produit.id}) }}">Ajouter au panier</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                {# display navigation #}
+                <div class="navigation" style="clear:both;">
+                    {{ knp_pagination_render(produits) }}
+                </div>
+
+                <!--<div class="pagination">
+                    <ul>
+                        <li class="disabled"><span>Précédent</span></li>
+                        <li class="disabled"><span>1</span></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">Suivant</a></li>
+                    </ul>
+                </div>-->
+                {% else %}
+                    Aucun produit
+                {% endif %}
+
+
+
+{% endblock %}

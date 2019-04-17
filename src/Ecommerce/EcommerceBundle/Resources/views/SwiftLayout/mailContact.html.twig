@@ -1,0 +1,13 @@
+		<div class="wrap">
+			
+				<h2>{{ contact.objet}}</h2>
+				<h5>{{ contact.date|date('d/m/Y', "Europe/Paris") }} - {{contact.date|date('H:i', "Europe/Paris")}}</h5>
+				<h5>{{ contact.nom}}</h5>
+				<h5>{{ contact.email}}</h5>
+				<h5>{{ contact.telephone}}</h5>
+			
+			<div class="content">    
+				<p>{{ contact.texte|raw|nl2br}}</p>
+	            <p align=center"><a href="http://www.web-city.fr">MyPanier.fr</a></p>
+			</div>
+		</div>

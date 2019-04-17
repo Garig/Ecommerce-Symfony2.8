@@ -1,0 +1,36 @@
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block body -%}
+    <h1>Produit</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th style="padding-right:20px">Id</th>
+                <td>{{ categorie.id }}</td>
+            </tr>
+            <tr>
+                <th style="padding-right:20px">Titre</th>
+                <td>{{ categorie.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('adminCategories_index') }}">
+            Retour
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('adminCategories_edit', { 'id': categorie.id }) }}">
+            Editer
+        </a>
+    </li>
+    <li>        
+        <a href="{{ path('adminCategories_delete', { 'id': categorie.id }) }}">
+            Supprimer
+        </a>
+    </li>
+</ul>
+{% endblock %}

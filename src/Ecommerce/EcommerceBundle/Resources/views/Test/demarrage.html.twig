@@ -1,0 +1,15 @@
+{% set tata = 'Françoise' %}
+
+{% for i in 'a'..'z' %}
+{{ loop.index0 }}=>{{ i | upper }}<br />
+{% endfor %}
+<br />
+{{ "now" | date("d-m-y") }}
+<br />
+Hello {{ prenom }} {{ nom }}! Votre tonton est {{ tonton }} ! Votre tata est {{ tata }}
+<br />
+{% for t in tontons %}
+<ul>
+<li>{{ t }}</li>
+</ul>
+{% endfor %}

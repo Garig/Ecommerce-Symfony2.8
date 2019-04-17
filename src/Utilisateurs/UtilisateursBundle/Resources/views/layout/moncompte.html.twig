@@ -1,0 +1,36 @@
+{% extends "::layout/base3.html.twig" %} 
+
+{% block body %}
+<div class="container">
+    <div class="row">
+
+        <!--<div class="span3">
+            {% include '::modulesUsed/navigation.html.twig' %}  
+            {{ render(controller('EcommerceBundle:Panier:menu')) }}
+            </div>	-->			
+            <div class="span9">
+                
+                {% for messages in app.session.flashBag.all %}
+                   {% for message in messages %}
+                       <div class="alert alert-success">
+                           {{ message }}
+                       </div>
+                   {% endfor %}
+               {% endfor %}
+                 {% for messages in app.session.flashBag.all %}
+                   {% for message in messages %}
+                       <div class="alert alert-errors">
+                           {{ message }}
+                       </div>
+                   {% endfor %}
+               {% endfor %}
+                
+                <h2>Mon compte</h2>
+
+                {% include '::modulesUsed/utilisateurConnecte.html.twig' %}
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

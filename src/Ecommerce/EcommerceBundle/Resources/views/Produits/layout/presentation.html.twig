@@ -1,0 +1,52 @@
+{% extends "::layout/base3.html.twig" %}
+
+{% block titre %}{{produit.nom}} - {{parent()}}{% endblock %}
+{% block description %}{{produit.description}}{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<!--<div class="span3">
+			{% include "::modulesUsed/navigation.html.twig" %}
+                        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                        {% include "::modulesUsed/utilisateurConnecte.html.twig" %}
+                        {% else %}
+                        {% include "::modulesUsed/utilisateur.html.twig" %}
+                        {% endif %}
+                        {% render(controller('EcommerceBundle:Panier:menu')) %}
+			</div>-->
+		        
+					<div  class="col-lg-4 col-md-4 col-xs-12" style="margin-top:20px">
+						<img src="{{ produit.image.AssetPath|imagine_filter('produit') }}" alt="{{ produit.image.name }}" style="width:275px;height:215px;margin:0">
+					</div>
+
+					<div class="col-lg-8 col-md-8 col-xs-12" style="margin-top:20px;margin-bottom:20px">
+						<h3>{{produit.nom}}</h3>
+						<h5>{{produit.categorie.nom}}</h5>
+						<p style="text-align:justify;line-height:24px">{{produit.description}}</p>
+						<h4>{{produit.prix|tva(produit.tva.multiplicate)| number_format(2, '.', ',')}} €</h4>
+                                                
+                                        {% if panier[produit.id] is not defined %}
+                                        <form action="{{ path('ajouter', { 'id' : produit.id }) }}" method="get">
+                                            <select name="qte" class="span1">
+                                                {% for i in 1..10 %}
+                                                    <option value="{{ i }}">{{ i }}</option>
+                                                {% endfor %}
+                                            </select>
+
+                                            <div>
+                                                <button class="btn btn-primary">Ajouter au panier</button>
+                                            </div>
+                                        </form>
+                                        {% else %}
+                                            <div>
+                                                <a href="{{ path('panier') }}" class="btn btn-primary">Le produit est déjà dans votre panier</a>
+                                            </div>
+                                        {% endif %}
+						
+					
+                </div>
+		</div>
+	</div>
+
+{% endblock %}

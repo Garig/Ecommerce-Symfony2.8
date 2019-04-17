@@ -1,0 +1,4 @@
+{% for categorie in categories %}
+    <li style="list-style-type:none;font-size:14px"><a href="{{ path("categorieProduits", {'slug': categorie.slug}) }}" class="accordion3">{{categorie.nom}}</a></li>
+{% endfor %}
+               

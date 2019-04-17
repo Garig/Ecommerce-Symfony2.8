@@ -1,0 +1,33 @@
+produits_adminProduits:
+    resource: "@EcommerceBundle/Resources/config/routing/routingProduitsAdmin.yml"
+    prefix:   /admin/produits
+    
+categories_adminCategories:
+    resource: "@EcommerceBundle/Resources/config/routing/routingCategoriesAdmin.yml"
+    prefix:   /admin/categories
+    
+categories_adminCommandes:
+    resource: "@EcommerceBundle/Resources/config/routing/routingCommandesAdmin.yml"
+    prefix:   /admin/commandes
+    
+routingPanier:
+    resource: "@EcommerceBundle/Resources/config/routing/routingPanier.yml"
+    prefix: /panier
+    
+    
+routingProduits:
+    resource: "@EcommerceBundle/Resources/config/routing/routingProduits.yml"
+    prefix: /
+    
+routingCommandes:
+    resource: "@EcommerceBundle/Resources/config/routing/routingCommandes.yml"
+    prefix: /
+    
+    
+test:
+    path:     /test1/{prenom}/{nom}
+    defaults: { _controller: EcommerceBundle:Test:demarrage }
+
+test2:
+    path:     /test2
+    defaults: { _controller: EcommerceBundle:Test:testFormulaire }

@@ -1,0 +1,40 @@
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block body -%}
+    <h1>Page</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th style="padding-right:20px">Id</th>
+                <td>{{ page.id }}</td>
+            </tr>
+            <tr>
+                <th style="padding-right:20px">Titre</th>
+                <td>{{ page.titre }}</td>
+            </tr>
+            <tr>
+                <th style="padding-right:20px" valign="top">Contenu</th>
+                <td>{{ page.contenu |raw }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('adminPages_index') }}">
+            Retour
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('adminPages_edit', { 'id': page.id }) }}">
+            Editer
+        </a>
+    </li>
+    <li>        
+        <a href="{{ path('adminPages_delete', { 'id': page.id }) }}">
+            Supprimer
+        </a>
+    </li>
+</ul>
+{% endblock %}

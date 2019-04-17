@@ -1,0 +1,10 @@
+            <a href="{{ path ('panier') }}">
+            {% if articles == 0 %}
+                Aucun article
+            {% elseif articles == 1 %}
+                1 article
+            {% else %}
+                {{ articles }} articles
+                {#<?php echo $panier=$panier[0]+$panier[1]; ?>#}
+            {% endif %}
+            </a>

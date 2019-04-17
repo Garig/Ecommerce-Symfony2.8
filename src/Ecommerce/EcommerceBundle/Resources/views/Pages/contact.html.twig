@@ -1,0 +1,55 @@
+{% extends "::layout/base3.html.twig" %}
+
+{% block titre %}Contact - {{parent()}}{% endblock %}
+
+{% block body %}
+
+
+
+<div class="col-lg-6" style="margin:0 0 70px 0;">
+
+                    {# avec Symfony2.8 il faut faire comme ça #}
+                    {% for messages in app.session.flashBag.all %}
+                        {% for message in messages %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+
+<h1 class="index">Contact</h1>
+
+<form method="post" action="{{ path("contact") }}" {{ form_enctype(form) }}>
+
+    {{ form_row(form.nom, { 'attr': {'class': 'form-titre'} }) }}
+    {{ form_errors(form.nom) }}
+
+    {{ form_row(form.email, { 'attr': {'class': 'form-titre'} }) }}
+    {{ form_errors(form.email) }}
+
+    {{ form_row(form.telephone, { 'attr': {'class': 'form-titre'} }) }}
+    {{ form_errors(form.telephone) }}
+
+    {{ form_row(form.objet, { 'attr': {'class': 'form-titre'} }) }}
+    {{ form_errors(form.objet) }}
+
+    <!--<label for="objet">Objet</label>
+    <select name="objet" class="form-titre">
+        <option>Renseignement</option>
+        <option>Nouveau projet</option>
+    </select>-->
+
+    {{ form_row(form.texte, { 'attr': {'class': 'form-description'} }) }}
+    {{ form_errors(form.texte) }}
+
+    {{ form_rest(form) }}
+    
+    <br>
+    <button type="submit" class="btn btn-primary bouton pull-right">Envoyer</button>
+
+</form>
+
+</div>
+                
+
+{% endblock %}

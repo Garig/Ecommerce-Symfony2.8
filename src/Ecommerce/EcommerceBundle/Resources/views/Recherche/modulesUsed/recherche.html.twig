@@ -1,0 +1,7 @@
+<form action="{{ path('rechercheProduits') }}" method="POST">
+    {# on met widget car on veut que le champ pas l intégralité du formulaire #}
+    {{ form_widget(form.recherche, { 'attr': {'class': 'recherche','placeholder':'recherche'} }) }}
+    <button type="submit" class="search"></button>
+    {{ form_widget(form) }}{#pour le token en hidden#}
+</form>
+               

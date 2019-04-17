@@ -1,0 +1,15 @@
+{% extends "::layout/base3.html.twig" %}
+
+{% block titre %}{{page.titre}} - {{parent()}}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h1>{{page.titre}}</h1>          
+            <div class="span12">
+                {{page.contenu|raw}}
+            </div>
+        </div>
+    </div>
+{% endblock %}

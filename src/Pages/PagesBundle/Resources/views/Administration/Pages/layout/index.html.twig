@@ -1,0 +1,42 @@
+{% extends '::layout/layoutAdmin.html.twig' %}
+{% block title title|title %}
+{% block body -%}
+    <h1>Liste des pages</h1>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        {% for page in pages %}
+            <tr>
+                <td>{{ page.titre }}</td>
+                <td>
+                    <a href="{{ path('adminPages_show', { 'id': page.id }) }}"><i class="fa fa-eye"></i>&nbsp;voir</a>&nbsp;&nbsp;
+                    <a href="{{ path('adminPages_edit', { 'id': page.id }) }}"><i class="fa fa-pencil"></i>&nbsp;éditer</a>&nbsp;&nbsp;
+                    <a href="{{ path('adminPages_delete', { 'id': page.id }) }}"><i class="fa fa-trash"></i>&nbsp;supprimer</a>&nbsp;&nbsp;
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('adminPages_new') }}">
+                Nouvelle page
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('adminPages_softdel') }}">
+                corbeille
+            </a>
+        </li>
+    </ul>
+{% endblock %}
